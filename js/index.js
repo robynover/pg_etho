@@ -18,11 +18,10 @@ var app = {
             document.addEventListener('deviceready', this.onDeviceReady, false);
         }
         
-        /*if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-            document.addEventListener("deviceready", this.onDeviceReady, false); //this is phonegap
-        } else {
-            this.onDeviceReady(); //this is the browser
-        }*/
+        document.addEventListener("menubutton", menuKeyDown, true);
+        function menuKeyDown() {
+            alert('Menu button pressed.');
+        }
         
     },
     onDeviceReady: function(){
