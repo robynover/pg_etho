@@ -29,15 +29,34 @@ var app = {
         }
     },
     onDeviceReady: function(){
+        app.setUpPageHeaders();
+
+        /*$('ul.activity_list li a').on("click touchstart",function() {
+            console.log(this);
+        }*/
+        $('ul.activity_list li a').click(function(){
+            //console.log(this.name);
+            var hidden = '<input type="hidden" name="activity"  value="'+ this.name +'" />';
+            $('#activity_choice').html(hidden + "<b>Activity:</b> " + this.name + "<br/>[change]");
+            $('#camp_field').toggle();
+            $('#observer_form_container').show();
+        });
+        /*$( document ).on( "pagecontainershow", function( event, ui ) {
+           
+        } );*/
+
+        /*($( document ).on( "pageshow", "[data-role='page']", function() {
+            console.log('pageshow');
+        }*/
         //console.log('test debugger');
         //alert('loaded');
         //console.log('ready');
-        document.addEventListener("menubutton", menuKeyDown, true);
+        /*document.addEventListener("menubutton", menuKeyDown, true);
         function menuKeyDown() {
             console.log('menu test debugger');
             alert('Menu button pressed.');
             //$('#menupop').show();
-        }
+        }*/
         
         //set up handlebars helper
         /*Handlebars.registerHelper('formattedDate', function(timestamp) {
@@ -126,6 +145,21 @@ var app = {
             //console.log('done');
             $('#debug pre').html(msg);
           });
+    },
+    setUpPageHeaders: function(){
+        //only the header from the first page will contain the header content
+        //the rest of the pages will copy it
+        var theHeader = $('#constantheader-wrapper').html();
+        var allHeaders = $('div[data-role="header"]');
+        // starting with the SECOND one, index 1
+        for (var i = 1; i < allHeaders.length; i++) {
+            allHeaders[i].innerHTML = theHeader + allHeaders[i].innerHTML;
+        }
+        /*var allPages = $('div[data-role="page"]');
+
+        for (var i = 1; i < allPages.length; i++) {
+            allPages[i].innerHTML = theHeader + allPages[i].innerHTML;
+        }*/
     }
 };
 app.initialize();

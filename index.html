@@ -29,29 +29,114 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div data-role="page" data-role="content"> <!--jqMobile-->
-        <div id = "main">
-            <div data-role="header">
+        <div data-role="page" id="home" data-title="Home"> <!--jqMobile-->
+        
+            <div data-role="header" id="constantheader-wrapper">
              <h1>EthoInfo</h1>
-            </div><!-- /header -->
-            
-            <!--<div id="menupop">
-                <div data-role="navbar" id="popnav">
+             <div data-role="navbar" >
                     <ul>
-                        <li><a href="#" data-icon="grid">Sighting</a></li>
-                        <li><a href="#" data-icon="star" class="ui-btn-active">Observer Log</a></li>
-                        <li><a href="#" data-icon="gear">Focal Data</a></li>
+                        <li><a href="#logs" data-icon="clock">Observer Log</a></li>
+                        <li><a href="#sightings" data-icon="eye">Sightings</a></li>
+                        <li><a href="#focal" data-icon="bullets">Focal Data</a></li>
                     </ul>
-                </div>
+                </div> <!-- /navbar -->
+            </div><!-- /header -->
+        <div data-role="main">
+            <!--<-->
 
-            </div>-->
-
-             <!--<div class="syncbtn" id="sync_cloud">Save to Cloud</div>-->
-            
-             <!--<button id="testlocalhost" class="ui-btn ui-shadow ui-corner-all">test localhost</button>-->
-            <div id="debug"><pre>..</pre></div>
-         </div> <!-- end main -->
+             <div id="debug"><pre>..</pre></div>
+         </div> <!-- end data-role=main -->
      </div><!--end data-role=page-->
+
+     <!--PAGE: logs-->
+     <div data-role="page" id="logs" data-theme="a" data-url="logs" tabindex="0" class="ui-page ui-page-theme-a" data-title="Observer Logs"> 
+        <div data-role="header">
+        </div><!-- /header -->
+        <div role="main" class="ui-content" id="logs_content">
+
+            <div id="observer_form_container" style="display:none">
+            <div id="activity_choice"></div>
+            <form id="form1" method="post" >
+                <input type="hidden" id="utc_time"  value="the time" />
+                <div class="ui-field-contain">
+                    <!--<input type="text" id="oname" name="oname" placeholder="Notes" value="">-->
+                    <label for="obs_notes">Notes</label>
+                    <textarea name="obs_notes"></textarea>
+                </div>
+            </form>
+            </div><!-- /observer_form_container -->
+            <!--<a href="#newlog" id="add_btn" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-b" data-transition="pop" data-rel="dialog">New</a>-->
+
+            
+            <div data-role="controlgroup" id="camp_field">
+             <a href="#camp" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-bottom ui-btn-b" data-transition="pop" data-rel="dialog">Camp</a>
+             <a href="#field" class="ui-btn ui-corner-all ui-icon-navigation ui-btn-icon-bottom ui-btn-b" data-transition="pop" data-rel="dialog">Field</a>
+            </div>
+
+            
+            
+                
+        </div><!-- /main -->
+     </div><!-- /page -->
+
+     <div data-role="dialog" id="field" >
+        <div role="main" class="ui-content">
+            <h1>Field</h1>
+            <p></p>
+            <ul data-role="listview" data-icon="false" class="activity_list">
+                <li><a href="#logs" name="behavior">Behavioral data</a></li>
+                <li><a href="#logs"name="habituation">Habituation</a></li>
+                <li><a href="#logs" name="mapping_trees">Mapping trees</a></li>
+                <li><a href="#logs" name="other">Other</a></li>
+                <li><a href="#logs" name="phenology">Phenology</a></li>
+                <li><a href="#logs" name="playbacks">Playbacks</a></li>
+                <li><a href="#logs" name="return_camp">Returning to camp</a></li>
+                <li><a href="#logs" name="search_groups">Searching for groups</a></li>
+                <li><a href="#logs" name="trails">Trails</a></li>
+                <li><a href="#logs" name="trapping">Trapping</a></li>
+            </ul>
+
+            <a href="#" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-left" data-rel="back">Close</a>
+               
+        </div>
+    </div>
+
+    <div data-role="dialog" id="camp" >
+        <div role="main" class="ui-content">
+            <h1>Camp</h1>
+            <p></p>
+            <ul data-role="listview" data-icon="false" class="activity_list">
+                <li><a href="#logs" name="data_entry">Data entry</a></li>
+                <li><a href="#logs" name="personal">Personal</a></li>
+                <li><a href="#logs" name="project_work">Project work</a></li>
+            </ul>
+
+            <a href="#" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-left" data-rel="back">Close</a>
+               
+        </div>
+    </div>
+     <!--PAGE: sightings-->
+     <div data-role="page" id="sightings" data-theme="a" data-url="sightings" tabindex="0" class="ui-page ui-page-theme-a" data-title="Sightings"> 
+        <div data-role="header">
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <p>Sightings</p>
+
+        </div><!-- /content -->
+     </div><!-- /page -->
+
+    <!--PAGE: focal-->
+     <div data-role="page" id="focal" data-theme="a" data-url="focal" tabindex="0" class="ui-page ui-page-theme-a" data-title="Focal Data"> 
+        <div data-role="header">
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <p>Focal Data</p>
+
+        </div><!-- /content -->
+     </div><!-- /page -->
+
+
+
 
         <!-- SCRIPTS -->
         <script type="text/javascript" src="phonegap.js"></script>
