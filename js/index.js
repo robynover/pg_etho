@@ -18,12 +18,7 @@ var app = {
             document.addEventListener('deviceready', this.onDeviceReady, false);
         }
         
-        document.addEventListener("menubutton", menuKeyDown, true);
-        function menuKeyDown() {
-            console.log('menu test debugger');
-            alert('Menu button pressed.');
-            //$('#menupop').show();
-        }
+        
         
     },
     showAlert: function (message, title) {
@@ -34,9 +29,15 @@ var app = {
         }
     },
     onDeviceReady: function(){
-        console.log('test debugger');
-        alert('loaded');
+        //console.log('test debugger');
+        //alert('loaded');
         //console.log('ready');
+        document.addEventListener("menubutton", menuKeyDown, true);
+        function menuKeyDown() {
+            console.log('menu test debugger');
+            alert('Menu button pressed.');
+            //$('#menupop').show();
+        }
         
         //set up handlebars helper
         /*Handlebars.registerHelper('formattedDate', function(timestamp) {
