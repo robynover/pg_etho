@@ -35,7 +35,7 @@ var app = {
     },
     onDeviceReady: function(){
         console.log('test debugger');
-        //alert('loaded');
+        alert('loaded');
         //console.log('ready');
         
         //set up handlebars helper
