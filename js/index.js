@@ -20,7 +20,8 @@ var app = {
         
         document.addEventListener("menubutton", menuKeyDown, true);
         function menuKeyDown() {
-            //alert('Menu button pressed.');
+            console.log('menu test debugger');
+            alert('Menu button pressed.');
             $('#menupop').show();
         }
         
@@ -33,6 +34,7 @@ var app = {
         }
     },
     onDeviceReady: function(){
+        console.log('test debugger');
         //alert('loaded');
         //console.log('ready');
         
