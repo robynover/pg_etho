@@ -29,17 +29,23 @@ var app = {
         }
     },
     onDeviceReady: function(){
+        // make standard headers on page elements
         app.setUpPageHeaders();
+        
+        // load templates
+        app.loadExternalTemplate('activity_form');
 
         /*$('ul.activity_list li a').on("click touchstart",function() {
             console.log(this);
         }*/
         $('ul.activity_list li a').click(function(){
-            //console.log(this.name);
-            var hidden = '<input type="hidden" name="activity"  value="'+ this.name +'" />';
-            $('#activity_choice').html(hidden + "<b>Activity:</b> " + this.name + "<br/>[change]");
-            $('#camp_field').toggle();
+            //console.log($(this).parent().parent().hasClass('camp_list'));
+            var hidden = '<input type="hidden" name="activity" id="activity_hidden" value="'+ this.name +'" />';
+            $('#activity_choice').html(hidden);
+            $('#camp_field label').append(": "+ this.name);
+            
             $('#observer_form_container').show();
+
         });
         
         // set listener for form button
@@ -52,6 +58,8 @@ var app = {
             app.onSubmit();
             return false;
          });
+
+        
 
         /*($( document ).on( "pageshow", "[data-role='page']", function() {
             console.log('pageshow');
@@ -90,7 +98,7 @@ var app = {
     onSubmit: function(){
         app.setInputTime($('#utc_time'));
         if ($('#obs_notes').val().trim().length > 0){
-            app.storeInput($('#utc_time').val(),$('#obs_notes').val().trim());
+            app.storeInput($('#utc_time').val(),$('#obs_notes').val().trim(),$('#activity_hidden').val());
             // clear out the field for the next input
             $('#obs_notes').val('');
         } else {
@@ -105,10 +113,10 @@ var app = {
         }
         
     },
-    storeInput:function(dt,oname){
+    storeInput:function(dt,oname,activity){
         // TODO: add activity data
         // using pouchDB
-        newrecord = {'date':dt,'obs_notes':oname};
+        newrecord = {'date':dt,'obs_notes':oname,'activity':activity};
         pouchSync.add(newrecord);
         pouchSync.sync(TO_CLOUD);
         //append to <ul> list of records in real time
@@ -162,10 +170,47 @@ var app = {
         for (var i = 1; i < allPages.length; i++) {
             allPages[i].innerHTML = theHeader + allPages[i].innerHTML;
         }*/
+    },
+    /*loadHandlebarsExternalTemplate: function(path) {
+        console.log('tpl! '+window.location.pathname);
+        var base = window.location.pathname;
+        var source;
+        var template;
+        var fullpath = base + "tpl/" + path + '.tpl';
+ 
+        $.ajax({
+            url: fullpath,
+            success: function(data) {
+                console.log('tpl loaded');
+                source    = data;
+                template  = Handlebars.compile(source);     
+
+                $('#camp_field').html(template);
+            }
+        });
+    }*/
+    loadExternalTemplate: function(path) {
+        //TODO: make the element for html dynamic
+        console.log('tpl! ');
+        var base = window.location.pathname;
+        var source;
+        var template;
+        var fullpath = base + "tpl/" + path + '.tpl';
+ 
+        $.ajax({
+            url: fullpath,
+            success: function(data) {
+                //$('#logs_content').html(data);
+                source    = data;
+                template  = Handlebars.compile(source);
+                $('#logs_content').html(template);
+
+            }
+        });
     }
+    
 };
 app.initialize();
-
 
 
 

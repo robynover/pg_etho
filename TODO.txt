@@ -23,6 +23,8 @@ x - Time formatting with moment.js
 
 - Add activity data in StoreInput
 
+- Create new file/object for UI stuff -- adding header elements, applying templates, etc
+
 ====
 
 
@@ -39,6 +41,7 @@ NOTES
 
 - 12/20: tried working with menubutton event, but it has strange behaviour -- only fires sometimes ... seems to fire if you go from browser, straight to app, hit back button, and then go straight back to app ... ???
 
+- For template files how-to, see http://www.jblotus.com/2011/05/24/keeping-your-handlebars-js-templates-organized/
 
 
 NEXT UP:
