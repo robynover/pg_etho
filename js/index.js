@@ -106,6 +106,7 @@ var app = {
         
     },
     storeInput:function(dt,oname){
+        // TODO: add activity data
         // using pouchDB
         newrecord = {'date':dt,'obs_notes':oname};
         pouchSync.add(newrecord);

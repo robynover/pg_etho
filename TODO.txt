@@ -19,6 +19,10 @@ x - Time formatting with moment.js
 
 - try cloudant sync to see if it works on phonegap w/o CO problems
 
+- "Save to remote" option -- put in footer bar
+
+- Add activity data in StoreInput
+
 ====
 
 
