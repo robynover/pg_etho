@@ -34,29 +34,17 @@
             <div data-role="header">
              <h1>Records</h1>
             </div><!-- /header -->
-            <ul id="record_list" data-role="listview"></ul>
-            <script id="record-list-tpl" type="text/x-handlebars-template">
-                
-                  {{#each .}}
-                  <li>{{this.doc.obs_name}} on {{formattedDate this.doc.date}}</li>
-                  {{/each}}
-                
-            </script>
             
-            <form id="form1" method="post" >
-                <input type="hidden" id="utc_time"  value="the time" />
-                <div class="ui-bar-a">
-                    <div class="ui-field-contain">
-                        
-                        <label for="textinput-fc">Observer Name</label>
-                        <input type="text" id="oname" name="myoname" placeholder="Your name" value="">
-                    </div>
+            <div id="menupop" style="display:none">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#" data-icon="grid">Sighting</a></li>
+                        <li><a href="#" data-icon="star" class="ui-btn-active">Observer Log</a></li>
+                        <li><a href="#" data-icon="gear">Focal Data</a></li>
+                    </ul>
+                </div><!-- /navbar -->
 
-                    <a href="#" id="add_btn" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-b ui-mini">Add</a>
-                </div> <!--end ui-bar-->
-                <input id="sync_cloud" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud" type="button" value="Save to Remote" />
-                <!--<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud">cloud</button>-->
-            </form>
+            </div>
 
              <!--<div class="syncbtn" id="sync_cloud">Save to Cloud</div>-->
             

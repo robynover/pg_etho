@@ -20,26 +20,35 @@ var app = {
         
         document.addEventListener("menubutton", menuKeyDown, true);
         function menuKeyDown() {
-            alert('Menu button pressed.');
+            //alert('Menu button pressed.');
+            $('#menupop').show();
         }
         
+    },
+    showAlert: function (message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
     },
     onDeviceReady: function(){
         //alert('loaded');
         //console.log('ready');
         
         //set up handlebars helper
-        Handlebars.registerHelper('formattedDate', function(timestamp) {
+        /*Handlebars.registerHelper('formattedDate', function(timestamp) {
             return moment.utc(timestamp/1000, 'X').zone("-05:00").format('MMMM Do YYYY, H:mm:ss');
-        });
+        });*/
         //get records from server
         //pouchSync.sync(FROM_CLOUD);
         
         //show existing records
-        app.showRecords();
+        //app.showRecords();
 
         // set listener for form button
-        $( "#add_btn" ).on("click touchstart",function() {
+
+        /*$( "#add_btn" ).on("click touchstart",function() {
             app.onSubmit();
             return false;
          });
@@ -52,21 +61,8 @@ var app = {
             console.log('sync fired');
             pouchSync.sync(TO_CLOUD);
 
-        });
-        /*$('#sync_cloud').on("touchstart",function(){
-            console.log('sync fired');
-            
-            
         });*/
-        /*$('#testlocalhost').on("click touchstart",function(){
-            console.log('clicked');
-            $('#debug').html('clicked'); 
-            // the url ttp://192.168.1.3/ works from the phone w proper hosts file conf
-            $.ajax("http://192.168.1.3/").done(function(resp) {
-               console.log(resp);
-               $('#debug').html(resp); 
-            });      
-        });*/
+
 
     },
     onSubmit: function(){
