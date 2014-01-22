@@ -22,7 +22,7 @@ var app = {
         function menuKeyDown() {
             console.log('menu test debugger');
             alert('Menu button pressed.');
-            $('#menupop').show();
+            //$('#menupop').show();
         }
         
     },
