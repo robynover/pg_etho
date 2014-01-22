@@ -1,0 +1,42 @@
+x - Change over to handlebar, moustache or other templating engine to handle lists, etc
+	- moustache: http://www.mobdevel.com/?p=20
+
+	1/8: did a test with mustache but it seems like handlebars may be the way to go because it lets you put templates w/in script tags in html (you don't have to do it that way, but it's an option) so you can have smaller pieces of template code without having a new file for each. The method of using separate files and loading them with ajax that i used in the mustache test still will work in handlebars. Handlebars is Mustache+
+
+
+- jQuery mobile?
+	- http://coenraets.org/blog/2011/10/sample-application-with-jquery-mobile-and-phonegap/
+
+x - Try to get localStorage to sync to outside -- couchDB, MySQL via PHP, etc (php part is done, see NEXT UP)
+
+x - Time formatting with moment.js
+- Sync buttons
+	x - "sync" (1-way save) TO cloud (iris)
+	- from cloud (iris)
+- Connect with CouchDB on local Ubuntu VM 
+
+- Validate input -- don't alllow empty fields
+
+- try cloudant sync to see if it works on phonegap w/o CO problems
+
+====
+
+
+NOTES
+-- running on mamp, with virtualhost redirect as http://phonegap.local:8888/
+
+- several different push/sync scenarios:
+	* push to local server (using push here to mean send to server only, don't get data back)
+	* sync with local server 
+	* push to remote server (might be cloudant or ethoinformatics.org)
+	* sync with remote server
+
+- running into CORS issues with cloudant. iriscouch works but is often offline, and doesn't require username/password. on phonegap (in device) it may work, tho: http://docs.phonegap.com/en/1.8.0rc1/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide and https://groups.google.com/forum/#!topic/phonegap/dwGtFt_gFuQ
+
+
+
+NEXT UP:
+- run couch db from ubuntu virtual machine and try to connect via REST
+	alternately, try to run pouchDB from within phoneGap
+	alternately, build a node app with heroku and use couchDB there, using node instead of php
+
