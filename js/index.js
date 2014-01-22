@@ -41,9 +41,17 @@ var app = {
             $('#camp_field').toggle();
             $('#observer_form_container').show();
         });
-        /*$( document ).on( "pagecontainershow", function( event, ui ) {
-           
-        } );*/
+        
+        // set listener for form button
+
+        $( "#add_btn" ).on("click touchstart",function() {
+            app.onSubmit();
+            return false;
+         });
+        $( "#form1" ).submit(function() {
+            app.onSubmit();
+            return false;
+         });
 
         /*($( document ).on( "pageshow", "[data-role='page']", function() {
             console.log('pageshow');
@@ -68,31 +76,23 @@ var app = {
         //show existing records
         //app.showRecords();
 
-        // set listener for form button
-
-        /*$( "#add_btn" ).on("click touchstart",function() {
-            app.onSubmit();
-            return false;
-         });
-        $( "#form1" ).submit(function() {
-            app.onSubmit();
-            return false;
-         });
+        
+        
         //sync button
         $('#sync_cloud').on("click touchstart",function(){
             console.log('sync fired');
             pouchSync.sync(TO_CLOUD);
 
-        });*/
+        });
 
 
     },
     onSubmit: function(){
         app.setInputTime($('#utc_time'));
-        if ($('#oname').val().trim().length > 0){
-            app.storeInput($('#utc_time').val(),$('#oname').val().trim());
+        if ($('#obs_notes').val().trim().length > 0){
+            app.storeInput($('#utc_time').val(),$('#obs_notes').val().trim());
             // clear out the field for the next input
-            $('#oname').val('');
+            $('#obs_notes').val('');
         } else {
             alert("Please enter a name");
         }
@@ -107,10 +107,11 @@ var app = {
     },
     storeInput:function(dt,oname){
         // using pouchDB
-        newrecord = {'date':dt,'obs_name':oname};
+        newrecord = {'date':dt,'obs_notes':oname};
         pouchSync.add(newrecord);
+        pouchSync.sync(TO_CLOUD);
         //append to <ul> list of records in real time
-        this.appendToRecordLi($( "#record_list" ),oname,dt);
+        //this.appendToRecordLi($( "#record_list" ),oname,dt);
 
     },
     showRecords: function(){

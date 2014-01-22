@@ -33,6 +33,8 @@ NOTES
 
 - running into CORS issues with cloudant. iriscouch works but is often offline, and doesn't require username/password. on phonegap (in device) it may work, tho: http://docs.phonegap.com/en/1.8.0rc1/guide_whitelist_index.md.html#Domain%20Whitelist%20Guide and https://groups.google.com/forum/#!topic/phonegap/dwGtFt_gFuQ
 
+- 12/20: tried working with menubutton event, but it has strange behaviour -- only fires sometimes ... seems to fire if you go from browser, straight to app, hit back button, and then go straight back to app ... ???
+
 
 
 NEXT UP:

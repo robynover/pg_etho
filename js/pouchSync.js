@@ -30,6 +30,7 @@ var pouchSync = {
 	sync: function(dir){ 
 		/* direction options: TO_CLOUD, FROM_CLOUD, BOTH*/
 		if (!dir){dir = TO_CLOUD;}
+		console.log('syncing');
 		var opts = {continuous: false,complete:function(){alert('Sync complete');}};
 		if (dir == TO_CLOUD || dir == BOTH){
 			this.db.replicate.to(this.remoteCouch, opts);

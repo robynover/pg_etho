@@ -62,11 +62,12 @@
                 <div class="ui-field-contain">
                     <!--<input type="text" id="oname" name="oname" placeholder="Notes" value="">-->
                     <label for="obs_notes">Notes</label>
-                    <textarea name="obs_notes"></textarea>
+                    <textarea name="obs_notes" id="obs_notes"></textarea>
                 </div>
+                <a href="#newlog" id="add_btn" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-b" data-transition="pop" data-rel="dialog">Add</a>
             </form>
             </div><!-- /observer_form_container -->
-            <!--<a href="#newlog" id="add_btn" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-b" data-transition="pop" data-rel="dialog">New</a>-->
+            <input id="sync_cloud" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud" type="button" value="Save to Remote" />
 
             
             <div data-role="controlgroup" id="camp_field">
