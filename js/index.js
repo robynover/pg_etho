@@ -35,9 +35,11 @@ var app = {
         // load templates
         app.loadExternalTemplate('activity_menu','logs_content',function(){
             console.log('loadExternalTemplate');
+            pgDebugLog('loadExternalTemplate');
             $('ul.activity_list li a').click(function(){
                 console.log('click li a');
-                console.log($(this).html());
+                pgDebugLog('click li a');
+                //console.log($(this).html());
                 //console.log(this.attr('href'));
                 //$(this).removeAttr("attribute").attr("foo", "bar");
                 
@@ -102,6 +104,7 @@ var app = {
         //sync button
         $('#sync_cloud').on("click touchstart",function(){
             console.log('sync fired');
+            pgDebugLog('sync fired');
             pouchSync.sync(TO_CLOUD);
 
         });
@@ -204,6 +207,7 @@ var app = {
     }*/
     loadExternalTemplate: function(path,el,callback) {
         //console.log('tpl! ');
+        pgDebugLog('template load called');
         var base = window.location.pathname;
         var source;
         var template;
@@ -223,6 +227,18 @@ var app = {
     
 };
 app.initialize();
+var debuglog = '';
+function pgDebugLog(txt){
+    debuglog += "\n---\n" + txt;
+}
+pgDebugLog('init debug logger');
+
+console.log(debuglog);
+
+function showDebugLog(){
+    return debuglog;
+}
+
 
 
 
