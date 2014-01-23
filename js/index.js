@@ -34,7 +34,9 @@ var app = {
 
         // load templates
         app.loadExternalTemplate('activity_menu','logs_content',function(){
+            console.log('loadExternalTemplate');
             $('ul.activity_list li a').click(function(){
+                console.log('click li a');
                 console.log($(this).html());
                 //console.log(this.attr('href'));
                 //$(this).removeAttr("attribute").attr("foo", "bar");
