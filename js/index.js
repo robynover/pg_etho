@@ -31,33 +31,44 @@ var app = {
     onDeviceReady: function(){
         // make standard headers on page elements
         app.setUpPageHeaders();
-        
+
         // load templates
-        app.loadExternalTemplate('activity_form');
+        app.loadExternalTemplate('activity_menu','logs_content',function(){
+            $('ul.activity_list li a').click(function(){
+                console.log($(this).html());
+                //console.log(this.attr('href'));
+                //$(this).removeAttr("attribute").attr("foo", "bar");
+                
+                activity_friendly_name = $(this).html();
+                activity_name = $(this).attr('name');
+                app.loadExternalTemplate('observer_form','logs_content',function(){
+                    //TODO should be dynamic to form or id name
+                    $('#activity_hidden').val(activity_name);
+                    act_pre = '<strong>Activity:</strong> ';
+                    act_post = '<br/><a href="#" class="ui-btn ui-icon-arrow-l ui-btn-icon-notext ui-corner-all">No text</a>';
+
+                    $('#activity_choice').html(act_pre + activity_friendly_name + act_post);
+                    //TODO break out form listeners into their own func/s
+                    $( "#add_btn" ).on("click touchstart",function() {
+                        app.onSubmit();
+                        return false;
+                     });
+                    $( "#form1" ).submit(function() {
+                        app.onSubmit();
+                        return false;
+                     });
+                });
+    
+        });
+
+        });
 
         /*$('ul.activity_list li a').on("click touchstart",function() {
             console.log(this);
-        }*/
-        $('ul.activity_list li a').click(function(){
-            //console.log($(this).parent().parent().hasClass('camp_list'));
-            var hidden = '<input type="hidden" name="activity" id="activity_hidden" value="'+ this.name +'" />';
-            $('#activity_choice').html(hidden);
-            $('#camp_field label').append(": "+ this.name);
-            
-            $('#observer_form_container').show();
-
-        });
+        });*/
+        /**/
         
-        // set listener for form button
-
-        $( "#add_btn" ).on("click touchstart",function() {
-            app.onSubmit();
-            return false;
-         });
-        $( "#form1" ).submit(function() {
-            app.onSubmit();
-            return false;
-         });
+        
 
         
 
@@ -102,7 +113,7 @@ var app = {
             // clear out the field for the next input
             $('#obs_notes').val('');
         } else {
-            alert("Please enter a name");
+            alert("Please enter a record");
         }
         return false;
     },
@@ -189,22 +200,21 @@ var app = {
             }
         });
     }*/
-    loadExternalTemplate: function(path) {
-        //TODO: make the element for html dynamic
-        console.log('tpl! ');
+    loadExternalTemplate: function(path,el,callback) {
+        //console.log('tpl! ');
         var base = window.location.pathname;
         var source;
         var template;
         var fullpath = base + "tpl/" + path + '.tpl';
- 
+        
         $.ajax({
             url: fullpath,
             success: function(data) {
-                //$('#logs_content').html(data);
                 source    = data;
                 template  = Handlebars.compile(source);
-                $('#logs_content').html(template);
-
+                $('#' + el).html(template);
+                //execute the callback if passed
+                if (callback) callback(template);
             }
         });
     }

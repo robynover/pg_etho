@@ -1,29 +1,21 @@
-x - Change over to handlebar, moustache or other templating engine to handle lists, etc
-	- moustache: http://www.mobdevel.com/?p=20
 
-	1/8: did a test with mustache but it seems like handlebars may be the way to go because it lets you put templates w/in script tags in html (you don't have to do it that way, but it's an option) so you can have smaller pieces of template code without having a new file for each. The method of using separate files and loading them with ajax that i used in the mustache test still will work in handlebars. Handlebars is Mustache+
-
-
-- jQuery mobile?
-	- http://coenraets.org/blog/2011/10/sample-application-with-jquery-mobile-and-phonegap/
-
-x - Try to get localStorage to sync to outside -- couchDB, MySQL via PHP, etc (php part is done, see NEXT UP)
-
-x - Time formatting with moment.js
 - Sync buttons
 	x - "sync" (1-way save) TO cloud (iris)
 	- from cloud (iris)
-- Connect with CouchDB on local Ubuntu VM 
 
-- Validate input -- don't alllow empty fields
+- Connect with CouchDB on local Ubuntu VM <-- big trouble with that! host routing probs between android and local and VM
 
-- try cloudant sync to see if it works on phonegap w/o CO problems
-
-- "Save to remote" option -- put in footer bar
-
-- Add activity data in StoreInput
+- "Save to remote" option -- put in footer bar so it's always available
 
 - Create new file/object for UI stuff -- adding header elements, applying templates, etc
+
+- Activity form should remember your last choice so that you don't have to page thru menus again (but ALSO let you back up! See below)
+
+-Issues with scrolling back through dynamically generated page views - example: the tabbed menu (activities) that turns into a form exists on the same "page" and there's not a way to get back to the menu list ... just need *back buttons* maybe
+
+-Highight top level tabs on nav (observer, sightings, etc)
+
+- ~~~~ideas~~~~ maybe more swipe actions btw tabs
 
 ====
 
