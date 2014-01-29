@@ -34,33 +34,31 @@ var app = {
         app.setUpPageHeaders();
 
         // load templates
-        //app.loadExternalTemplate('activity_menu','logs_content',function(){
-            //console.log('loadExternalTemplate');
-            //alert('external tpl load');
-            //pgDebugLog('loadExternalTemplate');
+        //app.loadExternalTemplate('activity_menu','logs_content',null,function(){
+            
             $('ul.activity_list li a').click(function(){
                 console.log('click li a');
-                pgDebugLog('click li a');
                 
-                activity_friendly_name = $(this).html();
-                activity_name = $(this).attr('name');
-                app.loadExternalTemplate('observer_form','obs_form_content',function(){
+                //context is data that will fill in the template
+                context = {activity_name: $(this).attr('name'),activity_friendly_name:$(this).html()};
+                app.loadExternalTemplate('observer_form','obs_form_content',context,function(){
                     //TODO should be dynamic to form or id name
-                    $('#activity_hidden').val(activity_name);
-                    act_pre = '<strong>Activity:</strong> ';
-                    act_post = '<br/><a href="#" class="ui-btn ui-icon-arrow-l ui-btn-icon-notext ui-corner-all">No text</a>';
-
-                    $('#activity_choice').html(act_pre + activity_friendly_name + act_post);
-                    //TODO break out form listeners into their own func/s
-                    $( "#add_btn" ).on("click touchstart",function() {
+                    $( "#add_btn" ).on("click",function() {
                         app.onSubmit();
                         return false;
                      });
 
-                    $( "#form1" ).submit(function() {
+                    /*$( "#form1" ).submit(function() {
                         //app.onSubmit();
                         return false;
-                     });
+                     });*/
+
+                    //sync button
+                    $('#sync_cloud').on("click",function(){
+                        console.log('sync fired');
+                        pouchSync.sync(TO_CLOUD);
+
+                    });
                 });
     
         });
@@ -137,9 +135,9 @@ var app = {
         
     },
     
-    loadExternalTemplate: function(path,el,callback) {
+    loadExternalTemplate: function(path,el,context,callback) {
         console.log('tpl! ');
-        //pgDebugLog('template load called');
+        
         //var base = window.location.pathname;
         //android needs this filepath instead of window:
         var base = 'file:///android_asset/www/';
@@ -154,8 +152,12 @@ var app = {
             success: function(data) {
                 console.log('PATH ' + fullpath);
                 template  = Handlebars.compile(data);
-                $('#' + el).html(template);
-                console.log(template);
+                html = template;
+                if (context){
+                    html = template(context);
+                }
+                $('#' + el).html(html);
+                console.log('template success');
                 //execute the callback if passed
                 if (callback) callback(template);
             },
@@ -167,18 +169,6 @@ var app = {
     
 };
 app.initialize();
-//pgDebug is a quick hack to try to get info from the console into the build.phonegap console
-var debuglog = '';
-function pgDebugLog(txt){
-    debuglog += "\n---\n" + txt;
-}
-pgDebugLog('init debug logger');
-
-console.log(debuglog);
-
-function showDebugLog(){
-    return debuglog;
-}
 
 
 
