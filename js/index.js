@@ -155,7 +155,9 @@ var app = {
     loadExternalTemplate: function(path,el,callback) {
         console.log('tpl! ');
         //pgDebugLog('template load called');
-        var base = window.location.pathname;
+        //var base = window.location.pathname;
+        //android needs this filepath instead of window:
+        var base = 'file:///android_asset/www/';
         var source;
         var template;
         var fullpath = base + "tpl/" + path + '.tpl';
