@@ -143,19 +143,18 @@ var app = {
         //var base = window.location.pathname;
         //android needs this filepath instead of window:
         var base = 'file:///android_asset/www/';
-        var source;
         var template;
         //var fullpath = base + "tpl/" + path + '.tpl';
         var fullpath = 'file:///android_asset/www/tpl/' + path + '.tpl';
-        console.log('path param'+path);
+        console.log('path param: '+path);
         
         $.ajax({
             url: fullpath,
             success: function(data) {
                 console.log('PATH ' + fullpath);
-                source    = data;
-                template  = Handlebars.compile(source);
+                template  = Handlebars.compile(data);
                 $('#' + el).html(template);
+                console.log(template);
                 //execute the callback if passed
                 if (callback) callback(template);
             },
