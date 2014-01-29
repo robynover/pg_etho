@@ -40,7 +40,7 @@ var app = {
             //pgDebugLog('loadExternalTemplate');
             $('ul.activity_list li a').click(function(){
                 console.log('click li a');
-                //pgDebugLog('click li a');
+                pgDebugLog('click li a');
                 
                 activity_friendly_name = $(this).html();
                 activity_name = $(this).attr('name');

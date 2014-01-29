@@ -1,3 +1,4 @@
+[see also, TODO list in nvAlt]
 
 - Sync buttons
 	x - "sync" (1-way save) TO cloud (iris)
@@ -13,7 +14,7 @@
 
 -Issues with scrolling back through dynamically generated page views - example: the tabbed menu (activities) that turns into a form exists on the same "page" and there's not a way to get back to the menu list ... just need *back buttons* maybe
 
--Highight top level tabs on nav (observer, sightings, etc)
+- Highight top level tabs on nav when selected (observer, sightings, etc)
 
 - ~~~~ideas~~~~ maybe more swipe actions btw tabs
 
@@ -37,7 +38,6 @@ NOTES
 
 
 NEXT UP:
-- run couch db from ubuntu virtual machine and try to connect via REST
-	alternately, try to run pouchDB from within phoneGap
-	alternately, build a node app with heroku and use couchDB there, using node instead of php
+- continue to working on a couchDB local, whether VM or Mac or MAMP
+- Install couch to EC2 
 
