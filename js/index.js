@@ -70,7 +70,7 @@ var app = {
         
         
         //sync button
-        $('#sync_cloud').on("click touchstart",function(){
+        $('#sync_cloud').on("click",function(){
             console.log('sync fired');
             //('sync fired');
             pouchSync.sync(TO_CLOUD);
@@ -124,22 +124,7 @@ var app = {
         ul_el.append(template(single_record)); //give it the data
 
     }, 
-    sendToServer: function(){
-        /*
-        Send all the stuff from local storage over to the server
-        */
-       
-        $.ajax({
-          type: "POST",
-          url: "http://phonegap.local:8888/php/receive.php",
-          data: {json: JSON.stringify(this.things)}
-        })
-        .done(function( msg ) {
-            //alert('msg: '+ msg);
-            //console.log('done');
-            $('#debug pre').html(msg);
-          });
-    },
+    
     setUpPageHeaders: function(){
         //only the header from the first page will contain the header content
         //the rest of the pages will copy it
@@ -160,7 +145,9 @@ var app = {
         var base = 'file:///android_asset/www/';
         var source;
         var template;
-        var fullpath = base + "tpl/" + path + '.tpl';
+        //var fullpath = base + "tpl/" + path + '.tpl';
+        var fullpath = 'file:///android_asset/www/tpl/' + path + '.tpl';
+        console.log('path param'+path);
         
         $.ajax({
             url: fullpath,
