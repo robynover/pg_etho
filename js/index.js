@@ -61,16 +61,9 @@ var app = {
                     });
                     //debug - show records, to check if they've been stored locally
                     pouchSync.all(function(results){
-                        console.log(results);
                         //console.log(results);
                         for (r in results){
                             console.log(results[r].doc.obs_notes);
-                            /*for (p in results[r]){
-                                console.log(results[r][p]);
-                                //one-off delete
-                                //pouchSync.deleteDoc(esults[r][p]);
-                            }*/
-                            
                         }
                     });
 
