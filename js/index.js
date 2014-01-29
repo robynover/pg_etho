@@ -150,6 +150,7 @@ var app = {
         
         $.ajax({
             url: fullpath,
+            dataType: "text",
             success: function(data) {
                 console.log('PATH ' + fullpath);
                 template  = Handlebars.compile(data);
