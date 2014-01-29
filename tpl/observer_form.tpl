@@ -10,5 +10,6 @@
         </div>
         
         <a href="#newlog" id="add_btn" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-b" data-transition="pop" data-rel="dialog">Add</a>
+        <input id="sync_cloud" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud" type="button" value="Save to Remote" />
     </form>
 </div><!-- /observer_form_container -->

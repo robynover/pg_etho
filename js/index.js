@@ -29,23 +29,22 @@ var app = {
         }
     },
     onDeviceReady: function(){
+        
         // make standard headers on page elements
         app.setUpPageHeaders();
 
         // load templates
-        app.loadExternalTemplate('activity_menu','logs_content',function(){
-            console.log('loadExternalTemplate');
-            pgDebugLog('loadExternalTemplate');
+        //app.loadExternalTemplate('activity_menu','logs_content',function(){
+            //console.log('loadExternalTemplate');
+            //alert('external tpl load');
+            //pgDebugLog('loadExternalTemplate');
             $('ul.activity_list li a').click(function(){
                 console.log('click li a');
-                pgDebugLog('click li a');
-                //console.log($(this).html());
-                //console.log(this.attr('href'));
-                //$(this).removeAttr("attribute").attr("foo", "bar");
+                //pgDebugLog('click li a');
                 
                 activity_friendly_name = $(this).html();
                 activity_name = $(this).attr('name');
-                app.loadExternalTemplate('observer_form','logs_content',function(){
+                app.loadExternalTemplate('observer_form','obs_form_content',function(){
                     //TODO should be dynamic to form or id name
                     $('#activity_hidden').val(activity_name);
                     act_pre = '<strong>Activity:</strong> ';
@@ -57,54 +56,23 @@ var app = {
                         app.onSubmit();
                         return false;
                      });
+
                     $( "#form1" ).submit(function() {
-                        app.onSubmit();
+                        //app.onSubmit();
                         return false;
                      });
                 });
     
         });
 
-        });
-
-        /*$('ul.activity_list li a').on("click touchstart",function() {
-            console.log(this);
-        });*/
-        /**/
-        
-        
-
-        
-
-        /*($( document ).on( "pageshow", "[data-role='page']", function() {
-            console.log('pageshow');
-        }*/
-        //console.log('test debugger');
-        //alert('loaded');
-        //console.log('ready');
-        /*document.addEventListener("menubutton", menuKeyDown, true);
-        function menuKeyDown() {
-            console.log('menu test debugger');
-            alert('Menu button pressed.');
-            //$('#menupop').show();
-        }*/
-        
-        //set up handlebars helper
-        /*Handlebars.registerHelper('formattedDate', function(timestamp) {
-            return moment.utc(timestamp/1000, 'X').zone("-05:00").format('MMMM Do YYYY, H:mm:ss');
-        });*/
-        //get records from server
-        //pouchSync.sync(FROM_CLOUD);
-        
-        //show existing records
-        //app.showRecords();
+        //});
 
         
         
         //sync button
         $('#sync_cloud').on("click touchstart",function(){
             console.log('sync fired');
-            pgDebugLog('sync fired');
+            //('sync fired');
             pouchSync.sync(TO_CLOUD);
 
         });
@@ -181,33 +149,12 @@ var app = {
         for (var i = 1; i < allHeaders.length; i++) {
             allHeaders[i].innerHTML = theHeader + allHeaders[i].innerHTML;
         }
-        /*var allPages = $('div[data-role="page"]');
-
-        for (var i = 1; i < allPages.length; i++) {
-            allPages[i].innerHTML = theHeader + allPages[i].innerHTML;
-        }*/
+        
     },
-    /*loadHandlebarsExternalTemplate: function(path) {
-        console.log('tpl! '+window.location.pathname);
-        var base = window.location.pathname;
-        var source;
-        var template;
-        var fullpath = base + "tpl/" + path + '.tpl';
- 
-        $.ajax({
-            url: fullpath,
-            success: function(data) {
-                console.log('tpl loaded');
-                source    = data;
-                template  = Handlebars.compile(source);     
-
-                $('#camp_field').html(template);
-            }
-        });
-    }*/
+    
     loadExternalTemplate: function(path,el,callback) {
-        //console.log('tpl! ');
-        pgDebugLog('template load called');
+        console.log('tpl! ');
+        //pgDebugLog('template load called');
         var base = window.location.pathname;
         var source;
         var template;
@@ -216,17 +163,22 @@ var app = {
         $.ajax({
             url: fullpath,
             success: function(data) {
+                console.log('PATH ' + fullpath);
                 source    = data;
                 template  = Handlebars.compile(source);
                 $('#' + el).html(template);
                 //execute the callback if passed
                 if (callback) callback(template);
+            },
+            error:function(x,y,z){
+                console.log ('PATH ' + fullpath);
             }
         });
     }
     
 };
 app.initialize();
+//pgDebug is a quick hack to try to get info from the console into the build.phonegap console
 var debuglog = '';
 function pgDebugLog(txt){
     debuglog += "\n---\n" + txt;
@@ -238,6 +190,7 @@ console.log(debuglog);
 function showDebugLog(){
     return debuglog;
 }
+
 
 
 

@@ -38,24 +38,53 @@
                  <h1>EthoInfo</h1>
                  <div data-role="navbar" >
                         <ul>
-                            <li><a href="#logs" data-icon="clock">Observer Log</a></li>
+                            <li><a href="#home" data-icon="clock">Observer Log</a></li>
                             <li><a href="#sightings" data-icon="eye">Sightings</a></li>
                             <li><a href="#focal" data-icon="bullets">Focal Data</a></li>
                         </ul>
                     </div> <!-- /navbar -->
             </div><!-- /header -->
         <div data-role="main" >
-            <div id="debug"><pre>..</pre></div>
+            <div data-role="tabs">
+    <div data-role="navbar">
+        <ul class="ui-body-b">
+           <li><a href="#field1" data-ajax="false" data-icon="navigation" role="tab" class="ui-btn-active">Field</a></li>
+           <li><a href="#camp" data-ajax="false" data-icon="home" role="tab">Camp</a></li>
+       </ul>
+    </div>
+    
+    <div id="field1" class="ui-content">
+        <ul data-role="listview" class="activity_list">
+            <li><a href="#" name="behavior">Behavioral data</a></li>
+            <li><a href="#" name="habituation">Habituation</a></li>
+            <li><a href="#" name="mapping_trees">Mapping trees</a></li>
+            <li><a href="#" name="phenology">Phenology</a></li>
+            <li><a href="#" name="playbacks">Playbacks</a></li>
+            <li><a href="#" name="return_camp">Returning to camp</a></li>
+            <li><a href="#" name="search_groups">Searching for groups</a></li>
+            <li><a href="#" name="trails">Trails</a></li>
+            <li><a href="#" name="trapping">Trapping</a></li>
+            <li><a href="#" name="other">Other</a></li>
+        </ul>
+    </div>
+
+    <div id="camp" class="ui-content">
+        <ul data-role="listview" class="activity_list">
+            <li><a href="#" name="data_entry">Data entry</a></li>
+            <li><a href="#" name="personal">Personal</a></li>
+            <li><a href="#" name="project_work">Project work</a></li>
+        </ul>
+    </div>
+</div>
          </div> <!-- /data-role=main -->
      </div> <!-- /data-role=page-->
 
-     <!-- #### PAGE: logs ### -->
-     <div data-role="page" id="logs" data-theme="a" data-url="logs" tabindex="0" class="ui-page ui-page-theme-a" data-title="Observer Logs"> 
+     <!-- ### PAGE: observer form ### -->
+     <div data-role="page" id="obs_form" data-theme="a" tabindex="0" class="ui-page ui-page-theme-a" data-title="Observer Form"> 
         <div data-role="header">
         </div><!-- /header -->
-        <div role="main" id="logs_content">logs here</div>
-     </div><!-- /page -->
-
+        <div role="main" id="obs_form_content"></div><!-- /content -->
+     </div><!-- /page --> 
 
      <!-- ### PAGE: sightings ### -->
      <div data-role="page" id="sightings" data-theme="a" data-url="sightings" tabindex="0" class="ui-page ui-page-theme-a" data-title="Sightings"> 
