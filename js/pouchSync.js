@@ -16,6 +16,7 @@ var pouchSync = {
 		this.db.post(record, function callback(err, result) {
 			if (!err) {
 				console.log('Successfully added a record!');
+				alert('Successfully added a record!');
 			} else {
 				console.log('could not add record');
 			}
