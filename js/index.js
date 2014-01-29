@@ -61,10 +61,11 @@ var app = {
                     });
                     //debug - show records, to check if they've been stored locally
                     pouchSync.all(function(results){
-                        //console.log(results);
+                        console.log("=== Show records debug ===");
                         for (r in results){
                             console.log(results[r].doc.obs_notes);
                         }
+                        console.log("=========");
                     });
 
 

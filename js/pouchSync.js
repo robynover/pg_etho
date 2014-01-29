@@ -4,9 +4,9 @@ var FROM_CLOUD = 2;
 var BOTH = 3;
 var pouchSync = {
 
-	remoteCouch: 'http://ethoinfo.iriscouch.com/ethorecords',
+	//remoteCouch: 'http://ethoinfo.iriscouch.com/ethorecords',
 	//cloudant url: https://USERNAME:PASSWORD@USERNAME.cloudant.com/DATABASE 
-	//remoteCouch: 'https://ethoinfo:4Z0oSqk7@ethoinfo.cloudant.com/ethorecords', //cloudant won't work bc cross-origin policy
+	remoteCouch: 'https://ethoinfo:4Z0oSqk7@ethoinfo.cloudant.com/ethorecords', //cloudant won't work bc cross-origin policy
 	db: PouchDB('ethorecords'),
 
 	add: function(record){
